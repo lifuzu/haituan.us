@@ -1,0 +1,117 @@
+// Product Document 
+[
+{  
+  "title": "Leather Jacket by Isaac Mizrahi",  
+  "description": "Layer on luxury with this sleek jacket made with 100% genuine leather. Slip it on over anything—the diamond-patterned quilting adds a subtle dose of textural intrigue, and the barely belled three-quarter sleeves boast a ribbed knit finish that looks chic day or night. With a slim fit and luxe satin lining, this timeless piece is the ultimate smart splurge—one that only gets better with age.",  
+  "images": [  
+    {
+      "kind": "cover",
+      "url": "https://a1.lscdn.net/imgs/6c7da764-9b55-4087-8def-02aa023ef25f/1150_q75_.jpg"
+    },
+    {
+      "kind": "thumbnail",
+      "url": "https://a1.lscdn.net/imgs/c1cda950-fbd4-4adf-b5c3-3d90f6ecb014/1150_q75_.jpg"
+    },
+    {
+      "kind": "thumbnail",
+      "url": "https://a1.lscdn.net/imgs/8b1f8470-d7f5-4dd5-981a-c1a29cd01000/1150_q75_.jpg"
+    }
+  ],  
+  "categories": [ "Clothes", "Shirts" ],  
+  "tags": [ "latest", "hottest" ],
+  "price": { "prev": 23.90, "current": 21.90 },
+  "purchased" : 18,
+  "due": new Date,
+  "color": [ "Black", "White" ],
+  "size": [ "S", "M", "L", "XL", "XXL", "XXXL" ],
+  // status: 'active', 'overdue', 'cancel', etc
+  "status": 'active',
+  "create": new Date,
+  "memo": ""
+},
+{  
+  "title": "Oversized Watch by Isaac Mizrahi",  
+  "description": "You’re a pro at turning your boyfriend's button-down shirts into belted dresses, but this limited-edition accessory lets you borrow that relaxed, casual-chic vibe for your everyday look. Get your hands on this stainless steel signature piece that's the perfect blend of style and substance. The oversized face will punch up any outfit, while slick silver detailing lends a dash of daintiness.",  
+  "images": [  
+    {
+      "kind": "cover",
+      "url": "https://a1.lscdn.net/imgs/b948fd2a-a781-4b6f-b48b-61e308700cd4/460_q75_.jpg"
+    },
+    {
+      "kind": "thumbnail",
+      "url": "https://a1.lscdn.net/imgs/fd037932-78e1-44fc-96d2-d8ae5205f802/460_q75_.jpg"
+    },
+    {
+      "kind": "thumbnail",
+      "url": "https://a1.lscdn.net/imgs/ed11f2d7-3a1f-4915-86c9-79b4c8049576/460_q75_.jpg"
+    }
+  ],  
+  "categories": [ "装饰品", "电子设备" ],  
+  "tags": [ "latest", "hottest" ],
+  "price": { "prev": 148.00, "current": 39.90 },
+  "purchased" : 19,
+  "due": new Date,
+  "color": [ "银色", "白色" ],
+  "size": [],
+  // status: 'active', 'overdue', 'cancel', etc
+  "status": 'active',
+  "create": new Date,
+  "memo": ""
+}
+]
+
+// User Document
+[
+{
+  "email": "abc@qq.com",
+  "display_name": "Abc",
+  "password": "123Abc",
+  "ship_to": { "zip": "210004", "country": "中国", "provace": "陕西", "city": "蒲城", "detail": "红旗路123号6弄702室" },
+  "credit": 0,
+  "create": new Date,
+  "status": "active",
+  "contacts": [
+    { "kind": "mobile", "value": "1387654321" },
+    { "kind": "wechat", "value": "sandyue" }
+  ],
+  "role": "user"
+},
+{
+  "email": "123@qq.com",
+  "display_name": "123",
+  "password": "123Abc",
+  "ship_to": { "zip": "010004", "country": "中国", "provace": "陕西", "city": "蒲城", "detail": "红旗路123号6弄702室" },
+  "credit": 0,
+  "create": new Date,
+  "status": "active",
+  "contacts": [
+    { "kind": "mobile", "value": "1397654321" },
+    { "kind": "wechat", "value": "yuesandy" }
+  ],
+  "role": "admin"
+}
+]
+
+// Order Document
+[
+{
+  "prod_id": "8b1f8470-d7f5-4dd5-981a-c1a29cd01000",
+  "unit_price": 34.90,
+  "quantity": 3,
+  "size": "S",
+  "shipping": 23.80,
+  "status": "unpaid", // 'paid', 'origazing', 'delivering', 'deliveried', 'completed', 'cancelled', etc
+  "user_id": "6763647766d7f5-4dd5-981a-c1a29cd01000",
+  "memo": ""
+},
+{
+  "prod_id": "8b1f8470-d7f5-4dd5-981a-c1a29cd01000",
+  "unit_price": 23.90,
+  "quantity": 5,
+  "size": "S",
+  "shipping": 20.80,
+  "status": "paid", // 'paid', 'origazing', 'delivering', 'deliveried', 'completed', 'cancelled', etc
+  "user_id": "6763647766d7f5-4dd5-981a-c1a29cd01000",
+  "memo": "something is well!"
+}
+]
