@@ -2,6 +2,7 @@ angular.module( 'ngBoilerplate', [
   'templates-app',
   'templates-common',
   'ngBoilerplate.home',
+  'ngBoilerplate.product',
   'ngBoilerplate.about',
   'ui.state',
   'ui.route'
@@ -12,7 +13,7 @@ angular.module( 'ngBoilerplate', [
 })
 
 .run( function run ( titleService ) {
-  titleService.setSuffix( ' | ngBoilerplate' );
+  titleService.setSuffix( ' | Haituan.US' );
 })
 
 .controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {

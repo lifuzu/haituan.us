@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="ngBoilerplate" ng-controller="AppCtrl">
   <head>
-    <title>Haituan.US | 海团网</title>
+    <title>Haituan.US</title>
 
     <!-- social media tags -->
     <meta name="twitter:card" content="summary">
@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="assets/font-awesome-ie7.min.css />
     <![endif]-->
 
-    <!-- compiled CSS --><% scripts.forEach( function ( file ) { %>
+    <!-- compiled JS --><% scripts.forEach( function ( file ) { %>
     <script type="text/javascript" src="<%= file %>"></script><% }); %>
 
     <!-- it's stupid to have to load it here, but this is for the +1 button -->
@@ -59,14 +59,14 @@
                   </a>
                 </li>
               </ul>
-              <ul class="nav">
+              <ul class="nav pull-right">
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     Services
                     <b class="caret"></b>
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">Web Design</a></li>
+                    <li><a href="#/product">Product</a></li>
                     <li><a href="#">Web Implementation</a></li>
                     <li><a href="#">Web Development!</a></li>
                   </ul>

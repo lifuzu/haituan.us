@@ -40,6 +40,80 @@ angular.module( 'ngBoilerplate.home', [
  */
 .controller( 'HomeCtrl', function HomeController( $scope, titleService ) {
   titleService.setTitle( 'Home' );
+
+  // Load products on startup
+  $scope.products = [{
+    _id: 1,
+    images: [{
+      kind: "cover",
+      url: "https://a1.lscdn.net/imgs/6c7da764-9b55-4087-8def-02aa023ef25f/1150_q75_.jpg"
+    },
+    {
+      kind: "thumbnail",
+      url: "https://a1.lscdn.net/imgs/6c7da764-9b55-4087-8def-02aa023ef25f/1150_q75_.jpg"
+    }]
+  },{
+    _id: 2,
+    images: [{
+      kind: "cover",
+      url: "https://a1.lscdn.net/imgs/c1cda950-fbd4-4adf-b5c3-3d90f6ecb014/1150_q75_.jpg"
+    },
+    {
+      kind: "thumbnail",
+      url: "https://a1.lscdn.net/imgs/6c7da764-9b55-4087-8def-02aa023ef25f/1150_q75_.jpg"
+    }]
+  },{
+    _id: 3,
+    images: [{
+      kind: "cover",
+      url: "https://a1.lscdn.net/imgs/6c7da764-9b55-4087-8def-02aa023ef25f/1150_q75_.jpg"
+    },
+    {
+      kind: "thumbnail",
+      url: "https://a1.lscdn.net/imgs/6c7da764-9b55-4087-8def-02aa023ef25f/1150_q75_.jpg"
+    }]
+  },{
+    _id: 4,
+    images: [{
+      kind: "cover",
+      url: "https://a1.lscdn.net/imgs/6c7da764-9b55-4087-8def-02aa023ef25f/1150_q75_.jpg"
+    },
+    {
+      kind: "thumbnail",
+      url: "https://a1.lscdn.net/imgs/6c7da764-9b55-4087-8def-02aa023ef25f/1150_q75_.jpg"
+    }]
+  },{
+    _id: 5,
+    images: [{
+      kind: "cover",
+      url: "https://a1.lscdn.net/imgs/6c7da764-9b55-4087-8def-02aa023ef25f/1150_q75_.jpg"
+    },
+    {
+      kind: "thumbnail",
+      url: "https://a1.lscdn.net/imgs/6c7da764-9b55-4087-8def-02aa023ef25f/1150_q75_.jpg"
+    }]
+  },{
+    _id: 4,
+    images: [{
+      kind: "cover",
+      url: "https://a1.lscdn.net/imgs/6c7da764-9b55-4087-8def-02aa023ef25f/1150_q75_.jpg"
+    },
+    {
+      kind: "thumbnail",
+      url: "https://a1.lscdn.net/imgs/6c7da764-9b55-4087-8def-02aa023ef25f/1150_q75_.jpg"
+    }]
+  },{
+    _id: 5,
+    images: [{
+      kind: "cover",
+      url: "https://a1.lscdn.net/imgs/6c7da764-9b55-4087-8def-02aa023ef25f/1150_q75_.jpg"
+    },
+    {
+      kind: "thumbnail",
+      url: "https://a1.lscdn.net/imgs/6c7da764-9b55-4087-8def-02aa023ef25f/1150_q75_.jpg"
+    }]
+  }
+  ];
 })
 
 ;
