@@ -35,17 +35,27 @@ angular.module( 'ngBoilerplate.product', [
     }
   });
 
-  RestangularProvider.setBaseUrl("www.google.com");
+  RestangularProvider.setBaseUrl("https://api.mongolab.com/api/1/databases/haituanus/collections");
+  RestangularProvider.setDefaultRequestParams({apiKey: "<APIKEY>"});
+  RestangularProvider.setRestangularFields({
+    id: '_id.$oid'
+  });
+  RestangularProvider.setRequestInterceptor(function(elem, operation, what) {
+    if (operation === 'put') {
+      elem._id = undefined;
+      return elem;
+    }
+    return elem;
+  });
 })
 
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'ProductCtrl', function ProductController( $scope, titleService ) {
+.controller( 'ProductCtrl', function ProductController( $scope, $location, titleService, Restangular ) {
   titleService.setTitle( 'Product' );
 
   $scope.product = {
-    _id: 1,
     title: "hello world!",
     images: [],
     colors: ['Red', 'White'],
@@ -62,6 +72,12 @@ angular.module( 'ngBoilerplate.product', [
     }
   };
 
+  $scope.save = function() {
+    //$log.info(product);
+    Restangular.all('products').post($scope.product).then(function(product) {
+      $location.path('/');
+    });
+  };
 })
 
 ;
