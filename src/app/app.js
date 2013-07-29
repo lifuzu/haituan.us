@@ -8,6 +8,12 @@ angular.module( 'ngBoilerplate', [
   'ui.route'
 ])
 
+.constant('MONGOLAB_CONFIG', {
+  baseUrl: 'https://api.mongolab.com/api/1/',
+  dbName: 'haituanus',
+  apiKey: '<APIKEY>'
+})
+
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
   $urlRouterProvider.otherwise( '/home' );
 })

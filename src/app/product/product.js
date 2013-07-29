@@ -24,7 +24,7 @@ angular.module( 'ngBoilerplate.product', [
  * will handle ensuring they are all available at run-time, but splitting it
  * this way makes each module more "self-contained".
  */
-.config(function config( $stateProvider, RestangularProvider ) {
+.config(function config( $stateProvider, RestangularProvider) {
   $stateProvider.state( 'product', {
     url: '/product',
     views: {
@@ -35,8 +35,15 @@ angular.module( 'ngBoilerplate.product', [
     }
   });
 
-  RestangularProvider.setBaseUrl("https://api.mongolab.com/api/1/databases/haituanus/collections");
-  RestangularProvider.setDefaultRequestParams({apiKey: "<APIKEY>"});
+  // TODO: declaration the sensitive information here now, later move to app.js, and then server side
+  MONGOLAB_CONFIG = {
+    baseUrl: 'https://api.mongolab.com/api/1/',
+    dbName: 'haituanus',
+    apiKey: '<APIKEY>'
+  };
+
+  RestangularProvider.setBaseUrl(MONGOLAB_CONFIG.baseUrl + "databases/" + MONGOLAB_CONFIG.dbName + "/collections");
+  RestangularProvider.setDefaultRequestParams({apiKey: MONGOLAB_CONFIG.apiKey});
   RestangularProvider.setRestangularFields({
     id: '_id.$oid'
   });
@@ -73,7 +80,6 @@ angular.module( 'ngBoilerplate.product', [
   };
 
   $scope.save = function() {
-    //$log.info(product);
     Restangular.all('products').post($scope.product).then(function(product) {
       $location.path('/');
     });
