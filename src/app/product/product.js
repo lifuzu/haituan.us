@@ -24,16 +24,55 @@ angular.module( 'ngBoilerplate.product', [
  * will handle ensuring they are all available at run-time, but splitting it
  * this way makes each module more "self-contained".
  */
-.config(function config( $stateProvider, RestangularProvider) {
-  $stateProvider.state( 'product', {
-    url: '/product',
-    views: {
-      "main": {
-        controller: 'ProductCtrl',
-        templateUrl: 'product/product.tpl.html'
+.config(function config( $stateProvider, $urlRouterProvider, RestangularProvider) {
+  $urlRouterProvider.otherwise("/product");
+
+  $stateProvider
+    .state( 'product', {
+      url: '/product',
+      abstract: true,
+      views: {
+        "main": {
+          controller: 'ProductListCtrl',
+          templateUrl: 'product/list.tpl.html'
+        }
       }
-    }
-  });
+    })
+    .state('product.list', {
+      // parent: 'product',
+      url: '',
+      views: {
+        "main": {
+          controller: 'ProductListCtrl',
+          templateUrl: 'product/list.tpl.html'
+        }
+      }
+    })
+    .state('product.create', {
+      // parent: 'product'
+      url: '/create',
+      views: {
+        "main@": {
+          controller: 'ProductCreateCtrl',
+          templateUrl: 'product/create.tpl.html'
+        }
+      }
+    })
+    .state('product.edit', {
+      // parent: 'product'
+      url: '/edit/:productId',
+      resolve: {
+        product: ['Restangular', '$stateParams', function(Restangular, $stateParams) {
+          return Restangular.one('products', $stateParams.productId).get();
+        }]
+      },
+      views: {
+        "main@": {
+          controller: 'ProductEditCtrl',
+          templateUrl: 'product/create.tpl.html'
+        }
+      }
+    });
 
   // TODO: declaration the sensitive information here now, later move to app.js, and then server side
   MONGOLAB_CONFIG = {
@@ -54,7 +93,12 @@ angular.module( 'ngBoilerplate.product', [
     }
     return elem;
   });
-})
+}).run([
+  '$rootScope', '$state', '$stateParams', function( $rootScope, $state, $stateParams) {
+    $rootScope.$state = $state;
+    $rootScope.$stateParams = $stateParams;
+  }
+])
 
 /**
  * And of course we define a controller for our route.
@@ -86,4 +130,62 @@ angular.module( 'ngBoilerplate.product', [
   };
 })
 
+.controller( 'ProductListCtrl', function ProductListController( $scope, $state, Restangular ) {
+  $scope.products = Restangular.all("products").getList();
+
+  $scope.edit = function(id) {
+    $state.transitionTo('product.edit', {productId: id});
+  };
+
+  $scope.create = function() {
+    $state.transitionTo('product.create');
+  };
+})
+
+.controller( 'ProductCreateCtrl', function ProductCreateContoller( $scope, $state, Restangular ) {
+  $scope.product = {
+    title: "hello world!",
+    images: [],
+    colors: ['Red', 'White'],
+    sizes: [],
+    categories: [],
+    tags: []
+  };
+
+  $scope.urlValue = undefined;
+  $scope.addUrl = function() {
+    if ($scope.urlValue) {
+      $scope.product.images.push({url: $scope.urlValue});
+      $scope.urlValue = undefined;
+    }
+  };
+
+  $scope.save = function() {
+    Restangular.all('products').post($scope.product).then(function(product) {
+      $state.transitionTo('product.list');
+    });
+  };
+})
+
+.controller( 'ProductEditCtrl', function ProductEditController( $scope, $location, Restangular, product) {
+  var original = product;
+  $scope.product = Restangular.copy(original);
+
+  $scope.isClean = function() {
+    return angular.equals(original, $scope.product);
+  };
+
+  $scope.destroy = function() {
+    original.remove().then(function() {
+      $location.path('/list');
+    });
+  };
+
+  $scope.save = function() {
+    $scope.product.put().then(function(){
+      $location.path('/list');
+    });
+  };
+})
+  
 ;

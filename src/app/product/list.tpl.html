@@ -1,0 +1,23 @@
+<!-- list.tpl.html -->
+
+<table class="table table-bordered table-condensed table-striped table-hover">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Due Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="product in products" ng-click="edit(product._id.$oid)">
+        <td>{{product.title}}</td>
+        <td>{{product.description}}</td>
+        <td>{{product.due}}</td>
+    </tr>
+    </tbody>
+</table>
+<div class="well">
+    <button class="btn" ng-click="create()">New Project</button>
+    <a href="#/about">About</a>
+    <a href="#/product/create">Product Create</a>
+</div>

@@ -19,7 +19,7 @@ angular.module( 'ngBoilerplate', [
 })
 
 .run( function run ( titleService ) {
-  titleService.setSuffix( ' | Haituan.US' );
+  titleService.setSuffix( ' | haituan.us' );
 })
 
 .controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {

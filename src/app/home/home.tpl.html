@@ -2,7 +2,7 @@
 <div class="marketing" ng-repeat="prod in products">
   <span ng-switch on="$index % 3">
     <span ng-switch-when="0">
-      <div class="row">
+      <div>
         <div class="span4" ng-show="products[$index+0]">
           <img src="{{products[$index+0].images[0].url}}"/>
         </div>
