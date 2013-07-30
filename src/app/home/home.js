@@ -15,7 +15,8 @@
 angular.module( 'ngBoilerplate.home', [
   'ui.state',
   'titleService',
-  'plusOne'
+  'plusOne',
+  'restangular'
 ])
 
 /**
@@ -23,97 +24,73 @@ angular.module( 'ngBoilerplate.home', [
  * will handle ensuring they are all available at run-time, but splitting it
  * this way makes each module more "self-contained".
  */
-.config(function config( $stateProvider ) {
-  $stateProvider.state( 'home', {
-    url: '/home',
-    views: {
-      "main": {
-        controller: 'HomeCtrl',
-        templateUrl: 'home/home.tpl.html'
+.config(function config( $stateProvider, RestangularProvider ) {
+  $stateProvider
+    .state( 'home', {
+      url: '/home',
+      views: {
+        "main": {
+          controller: 'HomeCtrl',
+          templateUrl: 'home/home.tpl.html'
+        }
       }
-    }
+    })
+    .state( 'detail', {
+      url: '/detail/:productId',
+      resolve: {
+        product: ['Restangular', '$stateParams', function(Restangular, $stateParams) {
+          return Restangular.one('products', $stateParams.productId).get();
+        }]
+      },
+      views: {
+        "main": {
+          controller: 'DetailCtrl',
+          templateUrl: 'home/detail.tpl.html'
+        }
+      }
+    });
+
+  // TODO: declaration the sensitive information here now, later move to app.js, and then server side
+  MONGOLAB_CONFIG = {
+    baseUrl: 'https://api.mongolab.com/api/1/',
+    dbName: 'haituanus',
+    apiKey: '<APIKEY>'
+  };
+
+  RestangularProvider.setBaseUrl(MONGOLAB_CONFIG.baseUrl + "databases/" + MONGOLAB_CONFIG.dbName + "/collections");
+  RestangularProvider.setDefaultRequestParams({apiKey: MONGOLAB_CONFIG.apiKey});
+  RestangularProvider.setRestangularFields({
+    id: '_id.$oid'
   });
-})
+  RestangularProvider.setRequestInterceptor(function(elem, operation, what) {
+    if (operation === 'put') {
+      elem._id = undefined;
+      return elem;
+    }
+    return elem;
+  });
+}).run([
+  '$rootScope', '$state', '$stateParams', function( $rootScope, $state, $stateParams) {
+    $rootScope.$state = $state;
+    $rootScope.$stateParams = $stateParams;
+  }
+])
 
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'HomeCtrl', function HomeController( $scope, titleService ) {
+.controller( 'HomeCtrl', function HomeController( $scope, titleService, Restangular ) {
   titleService.setTitle( 'Home' );
 
   // Load products on startup
-  $scope.products = [{
-    _id: 1,
-    images: [{
-      kind: "cover",
-      url: "https://a1.lscdn.net/imgs/6c7da764-9b55-4087-8def-02aa023ef25f/1150_q75_.jpg"
-    },
-    {
-      kind: "thumbnail",
-      url: "https://a1.lscdn.net/imgs/6c7da764-9b55-4087-8def-02aa023ef25f/1150_q75_.jpg"
-    }]
-  },{
-    _id: 2,
-    images: [{
-      kind: "cover",
-      url: "https://a1.lscdn.net/imgs/c1cda950-fbd4-4adf-b5c3-3d90f6ecb014/1150_q75_.jpg"
-    },
-    {
-      kind: "thumbnail",
-      url: "https://a1.lscdn.net/imgs/6c7da764-9b55-4087-8def-02aa023ef25f/1150_q75_.jpg"
-    }]
-  },{
-    _id: 3,
-    images: [{
-      kind: "cover",
-      url: "https://a1.lscdn.net/imgs/6c7da764-9b55-4087-8def-02aa023ef25f/1150_q75_.jpg"
-    },
-    {
-      kind: "thumbnail",
-      url: "https://a1.lscdn.net/imgs/6c7da764-9b55-4087-8def-02aa023ef25f/1150_q75_.jpg"
-    }]
-  },{
-    _id: 4,
-    images: [{
-      kind: "cover",
-      url: "https://a1.lscdn.net/imgs/6c7da764-9b55-4087-8def-02aa023ef25f/1150_q75_.jpg"
-    },
-    {
-      kind: "thumbnail",
-      url: "https://a1.lscdn.net/imgs/6c7da764-9b55-4087-8def-02aa023ef25f/1150_q75_.jpg"
-    }]
-  },{
-    _id: 5,
-    images: [{
-      kind: "cover",
-      url: "https://a1.lscdn.net/imgs/6c7da764-9b55-4087-8def-02aa023ef25f/1150_q75_.jpg"
-    },
-    {
-      kind: "thumbnail",
-      url: "https://a1.lscdn.net/imgs/6c7da764-9b55-4087-8def-02aa023ef25f/1150_q75_.jpg"
-    }]
-  },{
-    _id: 4,
-    images: [{
-      kind: "cover",
-      url: "https://a1.lscdn.net/imgs/6c7da764-9b55-4087-8def-02aa023ef25f/1150_q75_.jpg"
-    },
-    {
-      kind: "thumbnail",
-      url: "https://a1.lscdn.net/imgs/6c7da764-9b55-4087-8def-02aa023ef25f/1150_q75_.jpg"
-    }]
-  },{
-    _id: 5,
-    images: [{
-      kind: "cover",
-      url: "https://a1.lscdn.net/imgs/6c7da764-9b55-4087-8def-02aa023ef25f/1150_q75_.jpg"
-    },
-    {
-      kind: "thumbnail",
-      url: "https://a1.lscdn.net/imgs/6c7da764-9b55-4087-8def-02aa023ef25f/1150_q75_.jpg"
-    }]
-  }
-  ];
+  $scope.products = Restangular.all("products").getList();
+})
+
+.controller( 'DetailCtrl', function DetailController( $scope, titleService, Restangular, product ) {
+  titleService.setTitle( 'Detail' );
+
+  // Load the detail of the product
+  $scope.product = product;
 })
 
 ;

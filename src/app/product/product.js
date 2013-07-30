@@ -167,7 +167,7 @@ angular.module( 'ngBoilerplate.product', [
   };
 })
 
-.controller( 'ProductEditCtrl', function ProductEditController( $scope, $location, Restangular, product) {
+.controller( 'ProductEditCtrl', function ProductEditController( $scope, $state, Restangular, product) {
   var original = product;
   $scope.product = Restangular.copy(original);
 
@@ -177,13 +177,15 @@ angular.module( 'ngBoilerplate.product', [
 
   $scope.destroy = function() {
     original.remove().then(function() {
-      $location.path('/list');
+      //$location.path('/list');
+      $state.transitionTo('product.list');
     });
   };
 
   $scope.save = function() {
     $scope.product.put().then(function(){
-      $location.path('/list');
+      //$location.path('/list');
+      $state.transitionTo('product.list');
     });
   };
 })

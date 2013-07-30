@@ -4,13 +4,13 @@
     <span ng-switch-when="0">
       <div>
         <div class="span4" ng-show="products[$index+0]">
-          <img src="{{products[$index+0].images[0].url}}"/>
+          <a href="#/detail/{{products[$index+0]._id.$oid}}"><img src="{{products[$index+0].images[0].url}}"/></a>
         </div>
         <div class="span4" ng-show="products[$index+1]">
-          <img src="{{products[$index+1].images[0].url}}"/>
+          <a href="#/detail/{{products[$index+1]._id.$oid}}"><img src="{{products[$index+1].images[0].url}}"/></a>
         </div>
         <div class="span4" ng-show="products[$index+2]">
-          <img src="{{products[$index+2].images[0].url}}"/>
+          <a href="#/detail/{{products[$index+2]._id.$oid}}"><img src="{{products[$index+2].images[0].url}}"/></a>
         </div>
       </div>
     </span>
