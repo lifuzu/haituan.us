@@ -20,6 +20,7 @@
   -->
 
   <div class="box" ng-repeat="prod in products">
-    <a href="#/detail/{{prod._id.$oid}}"><img src="{{prod.images[0].url}}"/></a>
+    <a href="#/detail/{{prod._id.$oid}}"><img class="area" src="{{prod.images[0].url}}"/></a>
+    <div class="info">SOME TEXT</div>
   </div>
 
