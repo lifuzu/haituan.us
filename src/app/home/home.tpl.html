@@ -1,4 +1,4 @@
-
+<!--
 <div class="marketing" ng-repeat="prod in products">
   <span ng-switch on="$index % 3">
     <span ng-switch-when="0">
@@ -16,4 +16,10 @@
     </span>
   </span>
 </div>
+
+  -->
+
+  <div class="box" ng-repeat="prod in products">
+    <a href="#/detail/{{prod._id.$oid}}"><img src="{{prod.images[0].url}}"/></a>
+  </div>
 
