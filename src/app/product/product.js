@@ -24,7 +24,7 @@ angular.module( 'ngBoilerplate.product', [
  * will handle ensuring they are all available at run-time, but splitting it
  * this way makes each module more "self-contained".
  */
-.config(function config( $stateProvider, $urlRouterProvider, RestangularProvider) {
+.config(['$stateProvider', '$urlRouterProvider', 'RestangularProvider', function( $stateProvider, $urlRouterProvider, RestangularProvider) {
   $urlRouterProvider.otherwise("/product");
 
   $stateProvider
@@ -78,7 +78,7 @@ angular.module( 'ngBoilerplate.product', [
   MONGOLAB_CONFIG = {
     baseUrl: 'https://api.mongolab.com/api/1/',
     dbName: 'haituanus',
-    apiKey: '<APIKEY>'
+    apiKey: 'APIKEY'
   };
 
   RestangularProvider.setBaseUrl(MONGOLAB_CONFIG.baseUrl + "databases/" + MONGOLAB_CONFIG.dbName + "/collections");
@@ -93,7 +93,7 @@ angular.module( 'ngBoilerplate.product', [
     }
     return elem;
   });
-}).run([
+}]).run([
   '$rootScope', '$state', '$stateParams', function( $rootScope, $state, $stateParams) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
@@ -103,7 +103,7 @@ angular.module( 'ngBoilerplate.product', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'ProductCtrl', function ProductController( $scope, $location, titleService, Restangular ) {
+.controller( 'ProductCtrl', ['$scope', '$location', 'titleService', 'Restangular', function( $scope, $location, titleService, Restangular ) {
   titleService.setTitle( 'Product' );
 
   $scope.product = {
@@ -128,9 +128,9 @@ angular.module( 'ngBoilerplate.product', [
       $location.path('/');
     });
   };
-})
+}])
 
-.controller( 'ProductListCtrl', function ProductListController( $scope, $state, Restangular ) {
+.controller( 'ProductListCtrl', ['$scope', '$state', 'Restangular', function( $scope, $state, Restangular ) {
   $scope.products = Restangular.all("products").getList();
 
   $scope.edit = function(id) {
@@ -140,9 +140,9 @@ angular.module( 'ngBoilerplate.product', [
   $scope.create = function() {
     $state.transitionTo('product.create');
   };
-})
+}])
 
-.controller( 'ProductCreateCtrl', function ProductCreateContoller( $scope, $state, Restangular ) {
+.controller( 'ProductCreateCtrl', ['$scope', '$state', 'Restangular', function( $scope, $state, Restangular ) {
   $scope.product = {
     title: "hello world!",
     images: [],
@@ -165,9 +165,9 @@ angular.module( 'ngBoilerplate.product', [
       $state.transitionTo('product.list');
     });
   };
-})
+}])
 
-.controller( 'ProductEditCtrl', function ProductEditController( $scope, $state, Restangular, product) {
+.controller( 'ProductEditCtrl', ['$scope', '$state', 'Restangular', 'product', function( $scope, $state, Restangular, product) {
   var original = product;
   $scope.product = Restangular.copy(original);
 
@@ -188,6 +188,11 @@ angular.module( 'ngBoilerplate.product', [
       $state.transitionTo('product.list');
     });
   };
-})
-  
+}])
+
 ;
+
+//ProductController.$inject = ['$scope', '$location', 'titleService', 'Restangular'];
+//ProductListController.$inject = ['$scope', '$state', 'Restangular'];
+//ProductCreateContoller.$inject = ['$scope', '$state', 'Restangular'];
+//ProductEditController.$inject = ['$scope', '$state', 'Restangular', 'product'];

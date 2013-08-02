@@ -24,7 +24,7 @@ angular.module( 'ngBoilerplate.home', [
  * will handle ensuring they are all available at run-time, but splitting it
  * this way makes each module more "self-contained".
  */
-.config(function config( $stateProvider, RestangularProvider ) {
+.config(['$stateProvider', 'RestangularProvider', function( $stateProvider, RestangularProvider ) {
   $stateProvider
     .state( 'home', {
       url: '/home',
@@ -69,7 +69,7 @@ angular.module( 'ngBoilerplate.home', [
     }
     return elem;
   });
-}).run([
+}]).run([
   '$rootScope', '$state', '$stateParams', function( $rootScope, $state, $stateParams) {
     $rootScope.$state = $state;
     $rootScope.$stateParams = $stateParams;
@@ -79,19 +79,21 @@ angular.module( 'ngBoilerplate.home', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'HomeCtrl', function HomeController( $scope, titleService, Restangular ) {
+.controller( 'HomeCtrl', ['$scope', 'titleService', 'Restangular', function( $scope, titleService, Restangular ) {
   titleService.setTitle( 'Home' );
 
   // Load products on startup
   $scope.products = Restangular.all("products").getList();
-})
+}])
 
-.controller( 'DetailCtrl', function DetailController( $scope, titleService, Restangular, product ) {
+.controller( 'DetailCtrl', ['$scope', 'titleService', 'Restangular', 'product', function( $scope, titleService, Restangular, product ) {
   titleService.setTitle( 'Detail' );
 
   // Load the detail of the product
   $scope.product = product;
-})
+}])
 
 ;
 
+//HomeController.$inject = ['$scope', 'titleService', 'Restangular'];
+//DetailCtrl.$inject = ['$scope', 'titleService', 'Restangular', 'product'];
