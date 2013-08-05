@@ -78,7 +78,7 @@ angular.module( 'boilerplate.product', [
   MONGOLAB_CONFIG = {
     baseUrl: 'https://api.mongolab.com/api/1/',
     dbName: 'haituanus',
-    apiKey: 'DLrgkANU8UxnoSKmV1TNokgDWmlYHwny'
+    apiKey: '<APIKEY>'
   };
 
   RestangularProvider.setBaseUrl(MONGOLAB_CONFIG.baseUrl + "databases/" + MONGOLAB_CONFIG.dbName + "/collections");

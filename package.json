@@ -1,16 +1,16 @@
 {
-  "author": "Josh David Miller",
-  "name": "ng-boilerplate",
+  "author": "FUZU LI",
+  "name": "haituan.us",
   "version": "0.3.0",
-  "homepage": "http://bit.ly/ng-boilerplate",
+  "homepage": "http://haituan.us",
   "licenses": {
     "type": "MIT",
-    "url": "https://raw.github.com/joshdmiller/ng-boilerplate/master/LICENSE"
+    "url": "https://haituan.us/LICENSE"
   },
-  "bugs": "https://github.com/joshdmiller/ng-boilerplate/issues",
+  "bugs": "https://github.com/lifuzu/haituan.us/issues",
   "repository": {
     "type": "git",
-    "url": "git@github.com:joshdmiller/ng-boilerplate.git"
+    "url": ""
   },
   "dependencies": {},
   "devDependencies": {

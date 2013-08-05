@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html ng-app="boilerplate" ng-controller="AppCtrl">
   <head>
+    <meta charset="utf-8">
     <title>haituan.us</title>
 
     <!-- social media tags -->
-    <meta name="twitter:card" content="An oversea shopping site!">
+    <meta name="twitter:card" content="An oversea shopping site - haituan.us!">
     <meta name="twitter:site" content="@haituan.us">
     <meta name="twitter:title" content="haituan.us">
     <meta name="twitter:description" content="An oversea shopping site, with groupon features.">
@@ -21,6 +22,9 @@
 
     <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
     <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
+
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
 
     <!--[if IE 7>
     <link rel="stylesheet" href="assets/font-awesome-ie7.min.css />
@@ -49,13 +53,13 @@
                 <li ui-route="/home" ng-class="{active:$uiRoute}">
                   <a href="#/home">
                     <i class="icon-home"></i>
-                    haituan.us
+                    haituan.us - 海团网
                   </a>
                 </li>
                 <li ui-route="/about" ng-class="{active:$uiRoute}">
                   <a href="#/about">
                     <i class="icon-info-sign"></i>
-                    What is it?
+                    关于我们
                   </a>
                 </li>
               </ul>
@@ -93,7 +97,7 @@
 
           <p>
             (c) 2013
-            <a href="http://haituan.us">haituan.us</a>
+            <a href="http://haituan.us">海团网</a>
           </p>
         </div>
       </div>
