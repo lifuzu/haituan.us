@@ -12,7 +12,7 @@
  * The dependencies block here is also where component dependencies should be
  * specified, as shown below.
  */
-angular.module( 'ngBoilerplate.product', [
+angular.module( 'boilerplate.product', [
   'ui.state',
   'directives.crud',
   'titleService',
@@ -78,7 +78,7 @@ angular.module( 'ngBoilerplate.product', [
   MONGOLAB_CONFIG = {
     baseUrl: 'https://api.mongolab.com/api/1/',
     dbName: 'haituanus',
-    apiKey: 'APIKEY'
+    apiKey: 'DLrgkANU8UxnoSKmV1TNokgDWmlYHwny'
   };
 
   RestangularProvider.setBaseUrl(MONGOLAB_CONFIG.baseUrl + "databases/" + MONGOLAB_CONFIG.dbName + "/collections");
@@ -180,6 +180,14 @@ angular.module( 'ngBoilerplate.product', [
       //$location.path('/list');
       $state.transitionTo('product.list');
     });
+  };
+
+  $scope.urlValue = undefined;
+  $scope.addUrl = function() {
+    if ($scope.urlValue) {
+      $scope.product.images.push({url: $scope.urlValue});
+      $scope.urlValue = undefined;
+    }
   };
 
   $scope.save = function() {
