@@ -4,11 +4,17 @@
 
 <div class="title clearfix">
   <h1>{{product.title}} </h1>
-  <small>{{product.due}}</small>
+  <small>Due Date : {{product.due}}</small>
 </div>
 
-<div class="size clearfix">{{product.size}}</div>
-<div class="color clearfix">{{product.color}}</div>
+<div class="size clearfix">
+  <!--<label for="select01">Size</label>-->
+  Size : <select ng-model="product.size" ng-options="s for s in product.sizes"></select>
+</div>
+<div class="color clearfix">
+  <!--<label for="select01">Color</label>-->
+  Color: <select ng-model="product.color" ng-options="c for c in product.colors"></select>
+</div>
 
 <div class="button clearfix">
   <p><a class="btn btn-primary btn-large">Buy it</a></p>

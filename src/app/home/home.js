@@ -95,6 +95,8 @@ angular.module( 'boilerplate.home', [
 
   // Load the detail of the product
   $scope.product = product;
+  $scope.product.color = product.colors[0];
+  $scope.product.size = product.sizes[0];
 }])
 
 ;
