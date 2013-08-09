@@ -97,6 +97,16 @@ angular.module( 'boilerplate.home', [
   $scope.product = product;
   $scope.product.color = product.colors[0];
   $scope.product.size = product.sizes[0];
+
+  $scope.modal = {content: 'Hello Modal', saved: false};
+
+  $scope.buyit = function() {
+
+  };
+
+  $scope.giftit = function() {
+
+  };
 }])
 
 ;

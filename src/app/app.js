@@ -4,6 +4,7 @@ angular.module( 'boilerplate', [
   'boilerplate.home',
   'boilerplate.product',
   'boilerplate.about',
+  '$strap.directives',
   'ui.state',
   'ui.route'
 ])

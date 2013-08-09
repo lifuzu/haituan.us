@@ -4,21 +4,22 @@
 
 <div class="title clearfix">
   <h1>{{product.title}} </h1>
-  <small>Due Date : {{product.due}}</small>
+  <small>截至日期:{{product.due}}</small>
 </div>
 
 <div class="size clearfix">
   <!--<label for="select01">Size</label>-->
-  Size : <select ng-model="product.size" ng-options="s for s in product.sizes"></select>
+  大小: <select ng-model="product.size" ng-options="s for s in product.sizes"></select>
 </div>
 <div class="color clearfix">
   <!--<label for="select01">Color</label>-->
-  Color: <select ng-model="product.color" ng-options="c for c in product.colors"></select>
+  颜色: <select ng-model="product.color" ng-options="c for c in product.colors"></select>
 </div>
 
 <div class="button clearfix">
-  <p><a class="btn btn-primary btn-large">Buy it</a></p>
-  <p><a class="btn btn-info">Gift it</a></p>
+  <p><a class="btn btn-primary btn-large" bs-modal="'home/modal.tpl.html'">购买</a></p>
+  <!--<button type="button" class="btn btn-large btn-primary" bs-modal="'home/modal.tpl.html'">Click to open modal</button>-->
+  <p><a class="btn btn-info" ng-click="giftit()">送礼</a></p>
 </div>
 
 <div class="price clearfix">
